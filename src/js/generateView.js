@@ -116,8 +116,8 @@ function updateExpression(exp) {
     return atomicHandlers[exp.argument.type](exp.argument) + exp.operator;
 }
 
-function variableDeclaration(exp, rowsList, toReturn) {
-    exp.declarations.forEach(d => variableDeclarator(d, rowsList, toReturn));
+function variableDeclaration(exp, rowsList) {
+    exp.declarations.forEach(d => variableDeclarator(d, rowsList));
 }
 
 function variableDeclarationWithResult(exp) {
