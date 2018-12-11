@@ -62,6 +62,7 @@ function expressionStatement(exp, rowsList) {
 function forStatement(exp, rowsList) {
     let condition = atomicHandlers[exp.init.type](exp.init) + '; ' + atomicHandlers[exp.test.type](exp.test) + '; ' + atomicHandlers[exp.update.type](exp.update);
     pushToTable(rowsList, exp.loc.start.line, 'for statement', '', condition, '');
+    parsedCodeToTable(exp.body, rowsList);
 }
 
 function param(param, rowsList) {
