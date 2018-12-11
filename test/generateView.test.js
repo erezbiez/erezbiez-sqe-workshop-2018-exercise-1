@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import assert from 'assert';
 import {parseCode} from '../src/js/code-analyzer';
 import {parsedCodeToTable} from '../src/js/generateView';
@@ -296,6 +297,150 @@ describe('The generate view module', () => {
                 'name': '',
                 'condition': '',
                 'value': 'a'
+            }
+        ];
+        assert.equal(
+            JSON.stringify(rowsList),
+            JSON.stringify(json)
+        );
+    });
+
+    it('is parsing example correctly', () => {
+        let rowsList = [];
+        parsedCodeToTable(parseCode('function binarySearch(X, V, n){\n' +
+            '    let low, high, mid;\n' +
+            '    low = 0;\n' +
+            '    high = n - 1;\n' +
+            '    while (low <= high) {\n' +
+            '        mid = (low + high)/2;\n' +
+            '        if (X < V[mid])\n' +
+            '            high = mid - 1;\n' +
+            '        else if (X > V[mid])\n' +
+            '            low = mid + 1;\n' +
+            '        else\n' +
+            '            return mid;\n' +
+            '    }\n' +
+            '    return -1;\n' +
+            '}'), rowsList);
+        var json = [
+            {
+                'line': 1,
+                'type': 'function declaration',
+                'name': 'binarySearch',
+                'condition': '',
+                'value': ''
+            },
+            {
+                'line': 1,
+                'type': 'variable declartion',
+                'name': 'X',
+                'condition': '',
+                'value': ''
+            },
+            {
+                'line': 1,
+                'type': 'variable declartion',
+                'name': 'V',
+                'condition': '',
+                'value': ''
+            },
+            {
+                'line': 1,
+                'type': 'variable declartion',
+                'name': 'n',
+                'condition': '',
+                'value': ''
+            },
+            {
+                'line': 2,
+                'type': 'variable declaration',
+                'name': 'low',
+                'condition': '',
+                'value': ''
+            },
+            {
+                'line': 2,
+                'type': 'variable declaration',
+                'name': 'high',
+                'condition': '',
+                'value': ''
+            },
+            {
+                'line': 2,
+                'type': 'variable declaration',
+                'name': 'mid',
+                'condition': '',
+                'value': ''
+            },
+            {
+                'line': 3,
+                'type': 'assignment expression',
+                'name': 'low',
+                'condition': '',
+                'value': '0'
+            },
+            {
+                'line': 4,
+                'type': 'assignment expression',
+                'name': 'high',
+                'condition': '',
+                'value': 'n-1'
+            },
+            {
+                'line': 5,
+                'type': 'while statement',
+                'name': '',
+                'condition': 'low<=high',
+                'value': ''
+            },
+            {
+                'line': 6,
+                'type': 'assignment expression',
+                'name': 'mid',
+                'condition': '',
+                'value': 'low+high/2'
+            },
+            {
+                'line': 7,
+                'type': 'if statement',
+                'name': '',
+                'condition': 'X&ltV[mid]',
+                'value': ''
+            },
+            {
+                'line': 8,
+                'type': 'assignment expression',
+                'name': 'high',
+                'condition': '',
+                'value': 'mid-1'
+            },
+            {
+                'line': 9,
+                'type': 'else if statement',
+                'name': '',
+                'condition': 'X&gtV[mid]',
+                'value': ''
+            },
+            {
+                'line': 10,
+                'type': 'assignment expression',
+                'name': 'low',
+                'condition': '',
+                'value': 'mid+1'
+            },
+            {
+                'line': 12,
+                'type': 'return statement',
+                'name': '',
+                'condition': '',
+                'value': 'mid'
+            },
+            {
+                'line': 14,
+                'type': 'return statement',
+                'name': '',
+                'condition': '',
+                'value': '-1'
             }
         ];
         assert.equal(
